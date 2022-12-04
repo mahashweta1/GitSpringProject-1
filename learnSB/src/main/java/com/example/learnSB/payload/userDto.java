@@ -26,7 +26,7 @@ public class userDto {
 	@NotNull
 	@Min(value = 3)	
 	@Max(value = 8)
-//	@Range(min = 3, max= 8)
+
 	private String password;
 
 }

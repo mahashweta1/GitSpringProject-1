@@ -54,12 +54,12 @@ public class categoryServiceImpl implements categoryService{
 		return categoryList.stream().map(element -> this.categoryToCategoryDto(element)).collect(Collectors.toList());
 		
 	};
-	private Category categoryDtoToCategory(categoryDto cat) {
+	public Category categoryDtoToCategory(categoryDto cat) {
 		Category category = getModalMapper.map(cat, Category.class);
 		return category;
 	}
 	
-	private categoryDto categoryToCategoryDto(Category cat) {
+	public categoryDto categoryToCategoryDto(Category cat) {
 		categoryDto catogory = getModalMapper.map(cat, categoryDto.class);
 		return catogory;
 	}

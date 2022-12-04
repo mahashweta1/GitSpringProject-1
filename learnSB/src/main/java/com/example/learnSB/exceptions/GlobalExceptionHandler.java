@@ -28,18 +28,6 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Map<String, Object>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
 		Map<String, Object> errorInfo = new HashMap<>();
-//		ex.getBindingResult().getAllErrors().forEach(data-> {
-//			System.out.println(data.getDefaultMessage()+"TEST1");
-//			System.out.println(((FieldError) data).getField() +"TEST2");
-//			System.out.println(((FieldError) data).getRejectedValue()+"TEST2");
-//			System.out.println(((FieldError) data).toString()+"TEST3");
-//			System.out.println("===============================================");
-//			if(((FieldError) data).getField().equals	("password")) {
-//				Map<String, String> innerError = new HashMap<>();
-//				innerError.put(null, null);
-//			}
-//		});
-		
 		List<ObjectError> listData = ex.getBindingResult().getAllErrors();
 		Map<String, String> singleError = new HashMap<>();
 		IntStream.range(0,listData.size()).forEach(i -> {
@@ -52,7 +40,6 @@ public class GlobalExceptionHandler {
 			}
 			System.out.println(singleError+ " errorInfo errorInfo errorInfo errorInfoerrorInfo");
 		});
-//		return null;
 		return new ResponseEntity<Map<String, Object>>(errorInfo, HttpStatus.BAD_REQUEST);
 	}
 }

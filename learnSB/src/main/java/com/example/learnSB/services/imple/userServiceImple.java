@@ -29,8 +29,8 @@ public class userServiceImple implements userService {
 	}
 
 	@Override
-	public userDto updateUser(userDto u, int userId) {
-		User u1 = ur.findById(userId).orElse(null);
+	public userDto updateUser(userDto u, int userId) throws ResourceNotFoundException  {
+		User u1 = ur.findById(userId).orElseThrow(() -> new ResourceNotFoundException(404, "Resource Not Found", userId));
 		u1.setEmail(u.getEmail());
 		u1.setPassword(u.getPassword());
 		u1.setUser_id(u.getUser_id());
@@ -40,7 +40,7 @@ public class userServiceImple implements userService {
 	}
 
 	@Override
-	public userDto getUserById(int userId) {
+	public userDto getUserById(int userId) throws ResourceNotFoundException {
 		User user = ur.findById(userId).orElseThrow(() -> new ResourceNotFoundException(404, "Resource Not Found", userId));
 		return this.userTouserDto(user);
 	}
@@ -55,8 +55,8 @@ public class userServiceImple implements userService {
 	}
 
 	@Override
-	public void deleteUser(int uid) {
-		User user = ur.findById(uid).orElse(null);
+	public void deleteUser(int uid) throws ResourceNotFoundException{
+		User user = ur.findById(uid).orElseThrow(() -> new ResourceNotFoundException(404, "Resource Not Found", uid));
 		ur.delete(user);
 	}
 	
