@@ -24,8 +24,6 @@ public class userDto {
 	private String email;
 	
 	@NotNull
-	@Min(value = 3)	
-	@Max(value = 8)
 
 	private String password;
 

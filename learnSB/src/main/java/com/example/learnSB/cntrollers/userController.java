@@ -43,7 +43,7 @@ public class userController {
 		return ResponseEntity.status(201).body(u1);
 	}
 	
-	@GetMapping(value = "/getUser/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/getUser/{id}")
 	public ResponseEntity<?> getUserById(@PathVariable int id){
 		userDto u = us.getUserById(id);
 		return ResponseEntity.status(200).body(u);

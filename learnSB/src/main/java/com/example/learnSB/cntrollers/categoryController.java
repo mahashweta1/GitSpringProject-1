@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.learnSB.payload.ApiResponse;
 import com.example.learnSB.payload.categoryDto;
-import com.example.learnSB.services.imple.categoryServiceImpl;
+import com.example.learnSB.services.categoryService;
 
 @RestController
-@RequestMapping(name = "api/category")
+@RequestMapping("api/category")
 public class categoryController {
 	
 	@Autowired
-	categoryServiceImpl catService;
+	categoryService catService;
 
 	@PostMapping("/addCategory")
-	public ResponseEntity<categoryDto> createCategory(@Valid @RequestBody categoryDto cat){
+	public ResponseEntity<categoryDto> addCategory(@Valid @RequestBody categoryDto cat){
 		categoryDto catReceived = catService.createCategory(cat);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(catReceived);
 	}
