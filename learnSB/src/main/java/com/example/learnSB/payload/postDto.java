@@ -1,12 +1,9 @@
 package com.example.learnSB.payload;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
-
-import com.example.learnSB.entities.Category;
-import com.example.learnSB.entities.User;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,18 +13,18 @@ import lombok.Setter;
 @NoArgsConstructor
 public class postDto {
 
-	int post_id;
+	private int post_id;
 	
 	@NotNull
-	String caption;
+	private String caption;
 	
 	@NotNull
-	String location;
+	private String location;
 	
 	@NotNull
-	Date date;
+	private Date date;
 	
-	Category categoryData;
+	categoryDto category;
 	
-	User userData;
+	userDto user;
 }

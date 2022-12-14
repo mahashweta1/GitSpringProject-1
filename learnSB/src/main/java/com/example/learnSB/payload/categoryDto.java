@@ -1,7 +1,6 @@
 package com.example.learnSB.payload;
 
 import javax.validation.constraints.NotNull;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

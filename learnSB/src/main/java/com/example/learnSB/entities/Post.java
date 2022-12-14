@@ -1,6 +1,5 @@
 package com.example.learnSB.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,12 +18,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Post  implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Post{
 
 	@Override
 	public String toString() {
