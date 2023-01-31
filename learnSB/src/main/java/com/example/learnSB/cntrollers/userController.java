@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,12 @@ public class userController {
 	@PostMapping("/addUser")
 	public ResponseEntity<userDto> createUser(@Valid @RequestBody userDto u){
 		userDto user = us.createUser(u);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
+//		ResponseEntity.status(200).body(null);
+// 		ResponseEntity.status(HttpStatus.OK).body(null);
+		HttpHeaders header = new HttpHeaders();
+		header.add("testHeader", "my test header");
+		return new ResponseEntity<>(user, header, HttpStatus.OK);
+//		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user).getHeaders(header);
 	}
 	
 	@PutMapping("/updateUser/{id}")

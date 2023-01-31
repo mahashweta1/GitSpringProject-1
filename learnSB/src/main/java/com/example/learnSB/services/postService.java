@@ -12,4 +12,6 @@ public interface postService {
 	public postDto getPostById(int id);
 	public List<postDto> getPostByUser(Integer userId);
 	public List<postDto> getPostByCategory(Integer catId);
+	
+	
 }

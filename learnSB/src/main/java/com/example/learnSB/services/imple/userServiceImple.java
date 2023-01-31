@@ -1,6 +1,7 @@
 package com.example.learnSB.services.imple;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -41,6 +42,8 @@ public class userServiceImple implements userService {
 
 	@Override
 	public userDto getUserById(int userId) throws ResourceNotFoundException {
+//		Optional<User> user = ur.findById(userId);
+//		System.out.println(user.isPresent());
 		User user = ur.findById(userId).orElseThrow(() -> new ResourceNotFoundException(404, "Resource Not Found", userId));
 		return this.userTouserDto(user);
 	}

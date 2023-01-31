@@ -11,15 +11,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+
 import com.example.learnSB.payload.ApiResponse;
 
-@RestControllerAdvice
+@ControllerAdvice
+@ResponseBody
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<ApiResponse> ResourceNotFound(ResourceNotFoundException data){
+	public ResponseEntity<ApiResponse> ResourceNotFound(ResourceNotFoundException data, WebRequest web){
+		System.out.println(web + "	1111111111");
 		String msg= data.getMessage();
 		return new ResponseEntity<ApiResponse>(new ApiResponse(msg, false, HttpStatus.NOT_FOUND), HttpStatus.NOT_FOUND);
 		

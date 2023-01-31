@@ -1,5 +1,6 @@
 package com.example.learnSB.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,17 +23,17 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int user_id;
-//	@Override
+	private String user_name;
+	private String email;
+	private String password;
+
+//	List<Contact> contactList = new ArrayList<>();
+	@OneToMany(mappedBy = "user")
+	public List<Post> post;
+
+	//	@Override
 //	public String toString() {
 //		return "User [user_id=" + user_id + ", user_name=" + user_name + ", email=" + email + ", password=" + password
 //				+ ", post=" + post + "]";
 //	}
-
-	private String user_name;
-	private String email;
-	private String password;
-	
-	@OneToMany(mappedBy = "user")
-	public List<Post> post;
-	
 }

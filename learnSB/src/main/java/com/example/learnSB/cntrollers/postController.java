@@ -1,5 +1,7 @@
 package com.example.learnSB.cntrollers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.learnSB.payload.categoryDto;
 import com.example.learnSB.payload.postDto;
 import com.example.learnSB.services.postService;
 
@@ -35,6 +38,21 @@ public class postController {
 			@PathVariable Integer categoryId){
 		postDto newPost = ps.createPost(post, userId, categoryId);
 		return new ResponseEntity<postDto>(newPost, HttpStatus.CREATED);
+	}
+	
+	
+	@GetMapping("user/{userId}/post")
+	public ResponseEntity<List<postDto>> findPostByUserId(@PathVariable Integer userId){
+		List<postDto> postList = this.ps.getPostByUser(userId);
+		return new ResponseEntity<List<postDto>>(postList, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("category/{categoryId}/post")
+	public ResponseEntity<List<postDto>> findPostByCategoryId(@PathVariable Integer categoryId){
+		System.out.println(categoryId	+ "----------------------------------------");
+		List<postDto> postList = this.ps.getPostByCategory(categoryId);
+		return new ResponseEntity<List<postDto>>(postList, HttpStatus.OK);
 	}
 	
 //	@DeleteMappping("deletePost/{id}")

@@ -1,5 +1,6 @@
 package com.example.learnSB.services.imple;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
@@ -83,7 +84,7 @@ public class postServiceImpl implements postService {
 //		Post post = getModalMapper.map(p, Post.class);
 //		return post;
 //	}
-//	
+	
 	private postDto posttoPostDto(Post p) {
 		postDto post = getModalMapper.map(p, postDto.class);
 		return post;
@@ -91,14 +92,16 @@ public class postServiceImpl implements postService {
 
 	@Override
 	public List<postDto> getPostByUser(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		User user  = this.ur.findById(userId).orElseThrow(() -> new ResourceNotFoundException(404, "No Post Found", userId));
+		List<Post> postList = this.pr.findByUser(user);
+		return postList.stream().map(e  -> this.posttoPostDto(e)).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<postDto> getPostByCategory(Integer catId) {
-		// TODO Auto-generated method stub
-		return null;
+		Category category  = this.catRepo.findById(catId).orElseThrow(() -> new ResourceNotFoundException(404, "No Post Found", catId));
+		List<Post> postList = this.pr.findByCategory(category);
+		return postList.stream().map(e  -> this.posttoPostDto(e)).collect(Collectors.toList());
 	}
 	public userDto userTouserDto(User u) {
 		userDto dto = this.getModalMapper.map(u, userDto.class);

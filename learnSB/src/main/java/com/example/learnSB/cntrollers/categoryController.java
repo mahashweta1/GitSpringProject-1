@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.learnSB.payload.ApiResponse;
 import com.example.learnSB.payload.categoryDto;
 import com.example.learnSB.services.categoryService;
